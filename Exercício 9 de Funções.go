@@ -15,8 +15,22 @@ func palavras(s string) ([]string, error) {
 
 	}
 
+	words := strings.Split(s, " ")
+
+	return words, nil
+
 }
 
 func main() {
+
+	result, err := palavras("Salve rapaziadinha da quebrada")
+
+	if err != nil {
+
+		fmt.Printf("Houve um erro ao executar o programa: %s.", err)
+
+	}
+
+	fmt.Printf("O resultado é: %s", result)
 
 }

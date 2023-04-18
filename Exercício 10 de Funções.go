@@ -2,7 +2,10 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 func crescente(slice []int) ([]int, error) {
 
@@ -12,25 +15,13 @@ func crescente(slice []int) ([]int, error) {
 
 	}
 
-	var ordenados []int
+	sortedSlice := make([]int, len(slice))
 
-	for i := 0; i < len(slice); i++ {
+	copy(sortedSlice, slice)
 
-		for j := len(slice); j >= 0; j-- {
+	sort.Ints(sortedSlice)
 
-			if slice[i] > slice[j] {
-
-				slice[i], slice[j] = slice[j], slice[i]
-
-				ordenados = append(ordenados, slice[j])
-
-			}
-
-		}
-
-	}
-
-	return ordenados, nil
+	return sortedSlice, nil
 
 }
 

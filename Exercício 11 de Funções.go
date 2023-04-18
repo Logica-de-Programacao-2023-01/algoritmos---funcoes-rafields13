@@ -2,7 +2,10 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func verprimo(x int) (bool, error) {
 
@@ -12,12 +15,36 @@ func verprimo(x int) (bool, error) {
 
 	}
 
-	slice := []int
+	if x < 2 {
 
-	for i := 0; i < x
+		return false, nil
+
+	}
+
+	for i := 2; i <= int(math.Sqrt(float64(x))); i++ {
+
+		if x%i == 0 {
+
+			return false, nil
+
+		}
+
+	}
+
+	return true, nil
 
 }
 
 func main() {
+
+	result, err := verprimo(3)
+
+	if err != nil {
+
+		fmt.Printf("Houve um erro ao digitar um programa: %s.", err)
+
+	}
+
+	fmt.Println(result)
 
 }

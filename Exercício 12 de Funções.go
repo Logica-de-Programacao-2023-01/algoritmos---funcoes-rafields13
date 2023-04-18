@@ -5,35 +5,36 @@ package main
 import (
 	"fmt"
 	"strings"
+	"unicode"
 )
 
-func apenasmaiusculas(slice []string) ([]string, error) {
+func apenasmaiusculas(slice []string) (string, error) {
 
 	if len(slice) == 0 {
 
-		return []string{""}, fmt.Errorf("o Slice está vazio")
+		return "", fmt.Errorf("o Slice está vazio")
 
 	}
 
-	var mapamaiusculas = []string{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
+	var filtered []string
 
-	var maiusculas []string
+	for _, str := range slice {
 
-	for i := 0; i < len(slice); i++ {
+		if len(str) > 0 && unicode.IsUpper([]rune(str)[0]) {
 
-		for j := 0; j < len(slice); j++ {
-
-			if strings.HasPrefix(slice[i], mapamaiusculas[j]) {
-
-				maiusculas = append(maiusculas, slice[i])
-
-			}
+			filtered = append(filtered, str)
 
 		}
 
 	}
 
-	return maiusculas, nil
+	if len(filtered) == 0 {
+
+		return "", fmt.Errorf("nenhuma string com letra maiúscula encontrada")
+
+	}
+
+	return strings.Join(filtered, " "), nil
 
 }
 
