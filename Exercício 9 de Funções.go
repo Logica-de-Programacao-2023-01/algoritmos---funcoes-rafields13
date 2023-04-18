@@ -9,7 +9,7 @@ import (
 
 func palavras(s string) ([]string, error) {
 
-	if strings.Count(s, "") == 0 {
+	if len(s) == 0 {
 
 		return []string{""}, fmt.Errorf("não tem nenhum texto para ser lido")
 
